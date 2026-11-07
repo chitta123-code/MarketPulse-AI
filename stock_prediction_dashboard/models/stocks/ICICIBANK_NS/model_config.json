@@ -1,0 +1,37 @@
+{
+  "model_name": "CNNTemporalTransformer",
+  "symbol": "ICICIBANK.NS",
+  "company": "ICICI Bank",
+  "target": "Target_Log_Return",
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "SMA_20",
+    "EMA_20",
+    "RSI",
+    "MACD",
+    "BB_Upper",
+    "BB_Lower"
+  ],
+  "lookback": 60,
+  "direction_threshold": 0.001,
+  "model_parameters": {
+    "n_features": 11,
+    "conv_channels": 64,
+    "num_heads": 4,
+    "ff_dim": 128,
+    "dropout": 0.2
+  },
+  "metrics": {
+    "mae": 11.710309318162821,
+    "rmse": 15.639873802883942,
+    "r2": 0.9481734313415818,
+    "baseline_mae": 11.675521234647238,
+    "baseline_rmse": 15.64461667947523,
+    "directional_accuracy_percent": 49.195402298850574,
+    "test_samples": 435
+  }
+}

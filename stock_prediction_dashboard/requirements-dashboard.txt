@@ -1,0 +1,8 @@
+flask
+numpy
+pandas
+torch
+yfinance
+joblib
+scikit-learn
+ta

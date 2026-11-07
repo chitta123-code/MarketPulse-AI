@@ -1,0 +1,520 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#080e1b">
+    <meta name="description" content="MarketPulse AI - Experimental stock market analytics and machine learning prediction dashboard.">
+
+    <title>MarketPulse AI Pro | Stock Analytics</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+    <!-- Main JavaScript -->
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <span class="brand-mark">M</span>
+
+            <span>
+                MarketPulse
+                <small>AI ANALYTICS PRO</small>
+            </span>
+
+        </div>
+
+        <div class="side-label">WORKSPACE</div>
+
+        <a class="nav-item active" href="#">
+            <span>▦</span>
+            Overview
+        </a>
+
+        <a class="nav-item" href="#stockButtons">
+            <span>◈</span>
+            Watchlist
+        </a>
+
+        <a class="nav-item" href="#market-chart">
+            <span>⌁</span>
+            Market charts
+        </a>
+
+        <div class="side-label">INFORMATION</div>
+
+        <a class="nav-item" href="#risk-notice">
+            <span>ⓘ</span>
+            Risk information
+        </a>
+
+        <!-- Connection information -->
+
+        <div class="sidebar-note">
+
+            <div>
+                <span class="live-dot"></span>
+                Market data connection
+            </div>
+
+            <p>
+                Daily market data supplied by Yahoo Finance.
+                Delayed or unavailable data is possible.
+            </p>
+
+        </div>
+
+        <div class="sidebar-foot">
+            EDUCATIONAL PROJECT
+            <br>
+            NOT INVESTMENT ADVICE
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN DASHBOARD
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="eyebrow">
+                    MARKET OVERVIEW
+                </div>
+
+                <h1>
+                    Stock Analytics Dashboard
+                </h1>
+
+                <p class="subheading">
+                    Explore historical market trends and experimental
+                    machine-learning stock estimates.
+                </p>
+
+            </div>
+
+            <div class="status-pill">
+
+                <span class="live-dot"></span>
+
+                <span id="connectionStatus">
+                    Connecting
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             WATCHLIST
+        ====================================== -->
+
+        <section class="stock-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        YOUR WATCHLIST
+                    </div>
+
+                    <h2>
+                        Select a company
+                    </h2>
+
+                </div>
+
+                <span class="muted" id="selectedCompany">
+                    NIFTY 50
+                </span>
+
+            </div>
+
+
+            <div class="stock-grid" id="stockButtons">
+
+                <button
+                    class="stock-button active"
+                    data-symbol="^NSEI"
+                    aria-pressed="true">
+
+                    <b>NIFTY 50</b>
+                    <small>Market Index</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="TCS.NS"
+                    aria-pressed="false">
+
+                    <b>TCS</b>
+                    <small>Technology</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="RELIANCE.NS"
+                    aria-pressed="false">
+
+                    <b>Reliance</b>
+                    <small>Energy & Retail</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="INFY.NS"
+                    aria-pressed="false">
+
+                    <b>Infosys</b>
+                    <small>Technology</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="HDFCBANK.NS"
+                    aria-pressed="false">
+
+                    <b>HDFC Bank</b>
+                    <small>Banking</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="ICICIBANK.NS"
+                    aria-pressed="false">
+
+                    <b>ICICI Bank</b>
+                    <small>Banking</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="TATAMOTORS.NS"
+                    aria-pressed="false">
+
+                    <b>Tata Motors</b>
+                    <small>Automotive</small>
+
+                </button>
+
+
+                <button
+                    class="stock-button"
+                    data-symbol="ADANIENT.NS"
+                    aria-pressed="false">
+
+                    <b>Adani Enterprises</b>
+                    <small>Infrastructure</small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PERFORMANCE METRICS
+        ====================================== -->
+
+        <section class="metric-grid">
+
+
+            <!-- Latest Price -->
+
+            <article class="metric-card">
+
+                <div class="metric-label">
+                    LATEST CLOSE
+                </div>
+
+                <div
+                    class="metric-value"
+                    id="currentPrice">
+
+                    —
+
+                </div>
+
+                <div
+                    class="metric-foot"
+                    id="dataDate">
+
+                    Waiting for data
+
+                </div>
+
+            </article>
+
+
+            <!-- Prediction -->
+
+            <article class="metric-card">
+
+                <div class="metric-label">
+                    MODEL ESTIMATE
+                </div>
+
+                <div
+                    class="metric-value"
+                    id="predictedPrice">
+
+                    —
+
+                </div>
+
+                <div
+                    class="metric-foot"
+                    id="modelStatus">
+
+                    Checking model availability
+
+                </div>
+
+            </article>
+
+
+            <!-- Return -->
+
+            <article class="metric-card">
+
+                <div class="metric-label">
+                    ESTIMATED RETURN
+                </div>
+
+                <div
+                    class="metric-value"
+                    id="predictedReturn">
+
+                    —
+
+                </div>
+
+                <div class="metric-foot">
+                    Predicted log return × 100
+                </div>
+
+            </article>
+
+
+            <!-- Direction -->
+
+            <article class="metric-card">
+
+                <div class="metric-label">
+                    DIRECTION
+                </div>
+
+                <div
+                    class="metric-value direction-value"
+                    id="direction">
+
+                    —
+
+                </div>
+
+                <div class="metric-foot">
+                    Derived from model output
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- =====================================
+             STOCK PRICE CHART
+        ====================================== -->
+
+        <section
+            class="panel chart-panel"
+            id="market-chart">
+
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        MARKET ANALYTICS
+                    </div>
+
+                    <h2 id="chartTitle">
+                        NIFTY 50 price movement
+                    </h2>
+
+                    <p class="muted">
+                        Last 90 available trading sessions
+                    </p>
+
+                </div>
+
+
+                <!-- Chart Legend -->
+
+                <div class="legend">
+
+                    <span>
+                        <i class="legend-dot actual"></i>
+                        Historical close
+                    </span>
+
+                    <span>
+                        <i class="legend-dot forecast"></i>
+                        Model estimate
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Chart Container -->
+
+            <div class="chart-wrap">
+
+                <canvas
+                    id="predictionChart"
+                    aria-label="Historical stock price and model estimate chart"
+                    role="img">
+
+                </canvas>
+
+
+                <div
+                    id="chartFallback"
+                    class="chart-fallback"
+                    hidden>
+
+                    Chart library did not load.
+                    Check your internet connection or CDN access.
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             MODEL INFORMATION
+        ====================================== -->
+
+        <div
+            id="notice"
+            class="notice"
+            role="status"
+            aria-live="polite">
+
+            Loading market data...
+
+        </div>
+
+
+        <!-- ERROR MESSAGE -->
+
+        <div
+            id="errorMessage"
+            class="error-message"
+            role="alert"
+            aria-live="assertive"
+            hidden>
+
+        </div>
+
+
+        <!-- =====================================
+             RISK DISCLAIMER
+        ====================================== -->
+
+        <footer
+            class="disclaimer"
+            id="risk-notice">
+
+            <b>
+                Important Risk Notice
+            </b>
+
+            <p>
+
+                MarketPulse AI is an educational machine-learning
+                prototype, not a trading system or financial advice.
+
+                Model estimates are uncertain and may be inaccurate.
+                A model must be trained and independently evaluated
+                for each selected stock before its estimates are used.
+
+                Historical performance does not guarantee future results.
+
+            </p>
+
+        </footer>
+
+
+        <!-- FOOTER -->
+
+        <div class="page-foot">
+
+            MarketPulse AI Pro
+
+            <span>·</span>
+
+            Experimental Stock Analytics Platform
+
+        </div>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>

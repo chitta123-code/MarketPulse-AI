@@ -1,0 +1,37 @@
+{
+  "model_name": "CNNTemporalTransformer",
+  "symbol": "TCS.NS",
+  "company": "TCS",
+  "target": "Target_Log_Return",
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "SMA_20",
+    "EMA_20",
+    "RSI",
+    "MACD",
+    "BB_Upper",
+    "BB_Lower"
+  ],
+  "lookback": 60,
+  "direction_threshold": 0.001,
+  "model_parameters": {
+    "n_features": 11,
+    "conv_channels": 64,
+    "num_heads": 4,
+    "ff_dim": 128,
+    "dropout": 0.2
+  },
+  "metrics": {
+    "mae": 32.43503413525164,
+    "rmse": 44.988836534287955,
+    "r2": 0.9928766185919864,
+    "baseline_mae": 31.922180439438538,
+    "baseline_rmse": 44.69749674664898,
+    "directional_accuracy_percent": 43.67816091954023,
+    "test_samples": 435
+  }
+}

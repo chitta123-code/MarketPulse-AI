@@ -1,0 +1,37 @@
+{
+  "model_name": "CNNTemporalTransformer",
+  "symbol": "INFY.NS",
+  "company": "Infosys",
+  "target": "Target_Log_Return",
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "SMA_20",
+    "EMA_20",
+    "RSI",
+    "MACD",
+    "BB_Upper",
+    "BB_Lower"
+  ],
+  "lookback": 60,
+  "direction_threshold": 0.001,
+  "model_parameters": {
+    "n_features": 11,
+    "conv_channels": 64,
+    "num_heads": 4,
+    "ff_dim": 128,
+    "dropout": 0.2
+  },
+  "metrics": {
+    "mae": 18.27471381369269,
+    "rmse": 24.993969684987807,
+    "r2": 0.9882410533103592,
+    "baseline_mae": 18.171948469154323,
+    "baseline_rmse": 24.940887846225973,
+    "directional_accuracy_percent": 46.206896551724135,
+    "test_samples": 435
+  }
+}

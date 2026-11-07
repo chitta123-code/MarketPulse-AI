@@ -1,0 +1,37 @@
+{
+  "model_name": "CNNTemporalTransformer",
+  "symbol": "ADANIENT.NS",
+  "company": "Adani Enterprises",
+  "target": "Target_Log_Return",
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "SMA_20",
+    "EMA_20",
+    "RSI",
+    "MACD",
+    "BB_Upper",
+    "BB_Lower"
+  ],
+  "lookback": 60,
+  "direction_threshold": 0.001,
+  "model_parameters": {
+    "n_features": 11,
+    "conv_channels": 64,
+    "num_heads": 4,
+    "ff_dim": 128,
+    "dropout": 0.2
+  },
+  "metrics": {
+    "mae": 36.73225490986333,
+    "rmse": 52.67591020404963,
+    "r2": 0.9740987075328013,
+    "baseline_mae": 36.74425090908997,
+    "baseline_rmse": 52.739672801560985,
+    "directional_accuracy_percent": 48.04597701149425,
+    "test_samples": 435
+  }
+}

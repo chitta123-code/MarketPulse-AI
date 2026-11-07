@@ -1,0 +1,37 @@
+{
+  "model_name": "CNNTemporalTransformer",
+  "symbol": "^NSEI",
+  "company": "NIFTY 50",
+  "target": "Target_Log_Return",
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "SMA_20",
+    "EMA_20",
+    "RSI",
+    "MACD",
+    "BB_Upper",
+    "BB_Lower"
+  ],
+  "lookback": 60,
+  "direction_threshold": 0.001,
+  "model_parameters": {
+    "n_features": 11,
+    "conv_channels": 64,
+    "num_heads": 4,
+    "ff_dim": 128,
+    "dropout": 0.2
+  },
+  "metrics": {
+    "mae": 148.92769125364018,
+    "rmse": 199.17158682695552,
+    "r2": 0.9650403965150884,
+    "baseline_mae": 147.82461978777178,
+    "baseline_rmse": 198.41481053841326,
+    "directional_accuracy_percent": 49.19168591224018,
+    "test_samples": 433
+  }
+}
